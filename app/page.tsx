@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import Link from 'next/link'
 import Image from 'next/image'
-import Post from "../components/post"
 
 export default function Home() {
   return (
@@ -23,17 +22,6 @@ export default function Home() {
                 <span>Real good so far</span>
             </div>
         </div>
-        </section>
-        <section className={styles.postsContainer}>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
         </section>
       </main>
     </div>

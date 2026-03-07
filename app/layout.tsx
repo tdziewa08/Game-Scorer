@@ -59,4 +59,52 @@ export default function RootLayout({
     each blog post has a dynamic parameter [blod_id] or similar
     use Next forms to allow new posts and announcements
 
+  PAGE STRUCTURE:
+    Main page(visitor):
+      welcomes user
+      shows game of the day
+      links to login, signup, blogs page
+    
+    Main page(user):
+      welcomes user by NAME
+      shows game of the day
+      button to post a blog
+      links to signout, blogs page
+    
+    Main page(admin):
+      welcomes user by NAME
+      shows game of the day
+      button to post a blog
+      links to signout, blogs page
+
+    Blogs page(visitor):
+      shows blogs
+      blog info
+      shows NAME and role of who posted the blog
+
+    Blogs page(user):
+      shows blogs
+      blog info
+      shows NAME and role of who posted the blog
+      shows delete option for blog matching user ID
+
+    Blogs page(visitor):
+      shows blogs
+      blog info
+      shows NAME and role of who posted the blog
+      shows delete option for any blog
+
+    Create Blog Post page(user and admin):
+      form inputs
+      game of the day image
+      number fields for ranking
+      submit button
+
+    SignIn:
+      name and password fields
+
+    SignUp:
+      name and password fields
+
+    5 pages total
 */
