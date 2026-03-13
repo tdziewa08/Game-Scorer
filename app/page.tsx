@@ -3,6 +3,17 @@ import GameOfDay from "@/components/dailyGame";
 import Link from 'next/link'
 import Image from 'next/image'
 
+export type Game = {
+  id: number,
+  cover: {id: number, image_id: string},
+  first_release_date: number,
+  name: string,
+  summary: string,
+  game_type: number,
+  image: string,
+  company: string,
+  genres: string[]
+}
 //CHECK HOW TO KEEP THE TOKEN ONLY EXECUTING EVERY 57 DAYS...4915617 seconds
 
 // Revalidate this page every 24 hours (86400 seconds)
@@ -27,15 +38,16 @@ async function getToken() {
 
 async function getGamesTest(token: string) {
   const response = await fetch(
-  "https://api.igdb.com/v4/covers", //CHANGE TO 'games ENDPOINT TO GET ALL DATA NEEDED FOR GAME OF THE DAY CARD
+  "https://api.igdb.com/v4/games",
   { method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Client-ID': 'tw9b38rfdf3f49bwth8vajvp7ugzta',
       'Authorization': `Bearer ${token}`,
     },
-    body: "fields url;",
+    body: "fields cover.image_id, first_release_date, genres.name, involved_companies.company ,name ,summary; where cover != null & first_release_date != null;",
     // next: { revalidate: 86400 } // Cache the games for 24 hours
+    //maybe limit to 1 and have random number to offset
   });
   const data = await response.json();
   
@@ -43,17 +55,44 @@ async function getGamesTest(token: string) {
   const today = new Date();
   const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
   const gameIndex = dayOfYear % data.length;
-  
-  console.log('game cover code...')
-  console.log(data)
-  console.log(data[gameIndex].url)
-  return data[gameIndex].url
+  const selectedGame = data[gameIndex];
+  console.log(selectedGame)
+  const imageId = selectedGame.cover.image_id;
+  const gameImage = await getGameImage(imageId);
+  const gameCompany = await getGameCompany(token, selectedGame.involved_companies[0])
+
+  const gameGenres = selectedGame.genres.map((item: {id: number, name: string}) => item.name)
+  console.log('game genres,', gameGenres)
+
+  return {...selectedGame, image: gameImage, company: gameCompany, genres: gameGenres};
+}
+
+async function getGameImage(id: string) {
+  const imageUrl = `https://images.igdb.com/igdb/image/upload/t_1080p/${id}.jpg`;
+  console.log(imageUrl);
+  return imageUrl;
+}
+
+async function getGameCompany(token: string, ids: {id: number, company: number}) {
+  const response = await fetch(
+    "https://api.igdb.com/v4/companies",
+    { method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Client-ID': 'tw9b38rfdf3f49bwth8vajvp7ugzta',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: `fields name; where id = ${ids.company}; limit 1;`,
+    });
+    const data = await response.json();
+    console.log('company data, ', data)
+    return data[0].name
 }
 
 export default async function Home() {
 
   const token = await getToken()
-  let game = await getGamesTest(token)
+  let game: Game = await getGamesTest(token)
 
   return (
     <div className={styles.page}>
@@ -62,10 +101,8 @@ export default async function Home() {
           <h1>Gamer Ranker Shitter</h1>
           <span>Please Sign-Up to rank our game of the day...</span>
         </section>
-        <GameOfDay />
-          <Link href="/blogs">View Blogs</Link>
-          {/* <img src={game} /> */}
-          <Image src={`https:${game}`} alt="game" height={200} width={300}/>
+        <GameOfDay game={game} />
+        <Link href="/blogs">View Blogs</Link>
       </main>
     </div>
   );
