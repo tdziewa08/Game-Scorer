@@ -3,6 +3,7 @@ import GameOfDay from "@/components/dailyGame";
 import Link from 'next/link'
 import Image from 'next/image'
 
+
 export type Game = {
   id: number,
   cover: {id: number, image_id: string},

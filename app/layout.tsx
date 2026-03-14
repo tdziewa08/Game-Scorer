@@ -26,7 +26,6 @@ export default function RootLayout({
   );
 }
 
-
 //Psudo Code for the Gamer Blogger Shitter App
 
 /*
@@ -46,8 +45,8 @@ export default function RootLayout({
 
   REACT:
     UI - different for each level of user
-    Welcome Page - encourage signing up, show thumbnails for blogs posts
-    use new API for getting random game images for the user to post about i guess???
+    Welcome Page - encourage signing up, show thumbnails for blogs posts****
+    use new API for getting random game images for the user to post about i guess???****
     **users post on GAME OF THE DAY??? (single image chosen every 24 hours???)
     not really blogs but fileds of a form for a user to rate game aspects on a scale (gameplay, music, replayability, graphics, maybe a little comment)
     Sign In/Up Page - render form
@@ -61,9 +60,9 @@ export default function RootLayout({
 
   PAGE STRUCTURE:
     Main page(visitor):
-      welcomes user
-      shows game of the day
-      links to login, signup, blogs page
+      welcomes user****
+      shows game of the day****
+      links to login, signup, blogs page****
     
     Main page(user):
       welcomes user by NAME

@@ -7,6 +7,7 @@
   width: 80%;
 }
 
+/* Home Page */
 .main {
   display: flex;
   flex-direction: column;
@@ -51,8 +52,16 @@
   gap: .25em;
 }
 
+.dailyGameDetails > div {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-block: .5em;
+  gap: 1.25em;
+}
+
 .dailyGameDetails > a {
-  width: 25%;
+  width: 100%;
   font-size: 1rem;
   font-weight: bold;
   border: 1px solid black;
@@ -64,6 +73,18 @@
 
 .dailyGameDetails > h2 {
   font-size: 2rem;
+}
+
+.genresContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-style: italic;
+  gap: .5em;
+}
+
+.dailyGameSummary {
+  line-height: 1.25em;
 }
 
 .main > a {
@@ -119,6 +140,55 @@
   background-color: lightblue;
 }
 
+/* SignUp Page */
+
+.signupPage {
+  height: 600px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1em;
+  gap: 1em;
+}
+
+.signupPage > h1 {
+  font-size: 2rem;
+}
+
+.signupPage > label {
+  font-size: 1.5rem;
+}
+
+.signupPage > label > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.signupPage > label > div > p {
+  /* border: 1px solid black; */
+  width: 175px;
+}
+
+.signupPage > label > div > input {
+  font-size: 1.5rem;
+}
+
+.signupPage > button {
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgb(72, 212, 72);
+  border: 1px solid black;
+  padding-block: .25em;
+}
+
+.signupPage > button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
 
 
 
