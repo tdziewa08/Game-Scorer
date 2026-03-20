@@ -1,14 +1,16 @@
 import styles from "../page.module.css";
 import Post from "../../components/post"
 import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 
 export default async function BlogPage() {
+    const supabase = await createClient()
 
-    const cookieStore = await cookies()
-    const supabase = createClient(cookieStore)
-
-    const { data: test_post_table } = await supabase.from('test_post_table').select()
+    const { data: test_post_table, error } = await supabase.from('test_post_table').select()
+    
+    if (error) {
+        console.error('Error fetching posts:', error)
+        return <div>Error loading posts</div>
+    }
 
     return (
         <>

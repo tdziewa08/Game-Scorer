@@ -1,24 +1,41 @@
 import type { Metadata } from "next";
 import Link from 'next/link'
 import "./globals.css";
+import { getUser, handleSignout } from '@/app/auth/actions'
 
 export const metadata: Metadata = {
   title: "My App",
   description: "My custom application",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const user = await getUser()
+  console.log('USER: ',user)
+
   return (
     <html lang="en">
       <body>
         <nav className="testy">
           <Link href="/">Home</Link>
-          <Link href="/sign-in">Sign In</Link>
-          <Link href="/sign-up">Sign Up</Link>
+          {user === null
+           ? 
+           <>
+            <Link href="/sign-in">Sign In</Link>
+            <Link href="/sign-up">Sign Up</Link>
+           </>
+           :
+           <>
+            <span>Welcome {user.user_metadata.display_name}</span>
+            <form action={handleSignout}>
+              <button type="submit">Sign Out</button>
+            </form>
+           </>
+          }
         </nav>
         {children}
       </body>
@@ -26,7 +43,7 @@ export default function RootLayout({
   );
 }
 
-//Psudo Code for the Gamer Blogger Shitter App
+//Pseudo Code for the Gamer Blogger Shitter App
 
 /*
   The site is a blog for users to post about video games
@@ -39,8 +56,8 @@ export default function RootLayout({
   Visitor - view posts
 
   SUPABASE:
-    authenticate users
-    allow user signup
+    authenticate users****
+    allow user signup****
     store users posts (maybe likes, other metadata(dateAdded, category, id, name, etc))
 
   REACT:
@@ -54,7 +71,7 @@ export default function RootLayout({
 
   
   NEXT:
-    use Next links to go between pages
+    use Next links to go between pages****
     each blog post has a dynamic parameter [blod_id] or similar
     use Next forms to allow new posts and announcements
 

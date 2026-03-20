@@ -2,9 +2,7 @@ import styles from "./page.module.css";
 import GameOfDay from "@/components/dailyGame";
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/utils/supabase/client'
-
-
+import { getUser } from '@/app/auth/actions'
 
 export type Game = {
   id: number,
@@ -48,7 +46,7 @@ async function getGamesTest(token: string) {
       'Client-ID': 'tw9b38rfdf3f49bwth8vajvp7ugzta',
       'Authorization': `Bearer ${token}`,
     },
-    body: "fields cover.image_id, first_release_date, genres.name, involved_companies.company ,name ,summary; where cover != null & first_release_date != null;",
+    body: "fields cover.image_id, first_release_date, genres.name, involved_companies.company ,name ,summary; where cover != null & first_release_date != null & involved_companies != null & genres != null;",
     // next: { revalidate: 86400 } // Cache the games for 24 hours
     //maybe limit to 1 and have random number to offset
   });
@@ -59,20 +57,20 @@ async function getGamesTest(token: string) {
   const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24));
   const gameIndex = dayOfYear % data.length;
   const selectedGame = data[gameIndex];
-  console.log(selectedGame)
+  //console.log(selectedGame)
   const imageId = selectedGame.cover.image_id;
   const gameImage = await getGameImage(imageId);
   const gameCompany = await getGameCompany(token, selectedGame.involved_companies[0])
 
   const gameGenres = selectedGame.genres.map((item: {id: number, name: string}) => item.name)
-  console.log('game genres,', gameGenres)
+  //console.log('game genres,', gameGenres)
 
   return {...selectedGame, image: gameImage, company: gameCompany, genres: gameGenres};
 }
 
 async function getGameImage(id: string) {
   const imageUrl = `https://images.igdb.com/igdb/image/upload/t_1080p/${id}.jpg`;
-  console.log(imageUrl);
+  //console.log(imageUrl);
   return imageUrl;
 }
 
@@ -88,7 +86,7 @@ async function getGameCompany(token: string, ids: {id: number, company: number})
       body: `fields name; where id = ${ids.company}; limit 1;`,
     });
     const data = await response.json();
-    console.log('company data, ', data)
+    //console.log('company data, ', data)
     return data[0].name
 }
 
