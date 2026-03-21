@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from 'next/link'
 import "./globals.css";
+import Link from 'next/link';
 import { getUser, handleSignout } from '@/app/auth/actions'
 
 export const metadata: Metadata = {
@@ -58,16 +58,16 @@ export default async function RootLayout({
   SUPABASE:
     authenticate users****
     allow user signup****
-    store users posts (maybe likes, other metadata(dateAdded, category, id, name, etc))
+    store users posts (maybe likes, other metadata(dateAdded, category, id, name, etc))****
 
   REACT:
     UI - different for each level of user
     Welcome Page - encourage signing up, show thumbnails for blogs posts****
     use new API for getting random game images for the user to post about i guess???****
     **users post on GAME OF THE DAY??? (single image chosen every 24 hours???)
-    not really blogs but fileds of a form for a user to rate game aspects on a scale (gameplay, music, replayability, graphics, maybe a little comment)
-    Sign In/Up Page - render form
-    Blogs Page - render blogs and announcements
+    not really blogs but fields of a form for a user to rate game aspects on a scale (gameplay, music, replayability, graphics, maybe a little comment)****
+    Sign In/Up Page - render form****
+    Blogs Page - render blogs ****
 
   
   NEXT:
@@ -82,10 +82,10 @@ export default async function RootLayout({
       links to login, signup, blogs page****
     
     Main page(user):
-      welcomes user by NAME
-      shows game of the day
-      button to post a blog
-      links to signout, blogs page
+      welcomes user by NAME ****
+      shows game of the day ****
+      button to post a blog ****
+      links to signout, blogs page ****
     
     Main page(admin):
       welcomes user by NAME
@@ -94,33 +94,33 @@ export default async function RootLayout({
       links to signout, blogs page
 
     Blogs page(visitor):
-      shows blogs
-      blog info
+      shows blogs ****
+      blog info ****
       shows NAME and role of who posted the blog
 
     Blogs page(user):
-      shows blogs
-      blog info
+      shows blogs ****
+      blog info ****
       shows NAME and role of who posted the blog
-      shows delete option for blog matching user ID
+      shows delete option for blog matching user ID ****
 
-    Blogs page(visitor):
-      shows blogs
-      blog info
+    Blogs page(admin):
+      shows blogs ****
+      blog info ****
       shows NAME and role of who posted the blog
       shows delete option for any blog
 
     Create Blog Post page(user and admin):
-      form inputs
-      game of the day image
-      number fields for ranking
-      submit button
+      form inputs ****
+      game of the day image ****
+      number fields for ranking ****
+      submit button ****
 
     SignIn:
-      name and password fields
+      email and password fields ****
 
     SignUp:
-      name and password fields
+      name, email, and password fields ****
 
     5 pages total
 */

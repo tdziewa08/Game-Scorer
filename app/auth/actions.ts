@@ -2,6 +2,7 @@
 
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import { Game, getDailyGame } from '@/utils/daily-game'
 
 export async function getUser() {
     const supabase = await createClient()
@@ -54,6 +55,43 @@ export async function handleSignout() {
     const supabase = await createClient()
     await supabase.auth.signOut()
     redirect('/')
+}
+
+export async function writePost(formData: FormData) {
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if(!user)
+    {
+        console.error('Not an authenticated user')
+        redirect('/sign_up')
+    }
+    const { data, error } = await supabase
+        .from('test_post_table')
+        .insert(
+            {
+                user_id: user.id,
+                user_display_name: user.user_metadata.display_name,
+                gameplay_rating: Number(formData.get('gameplay')),
+                story_rating: Number(formData.get('story')),
+                music_rating: Number(formData.get('music')),
+                replay_rating: Number(formData.get('replay')),
+                post_image: formData.get('post_image') as string
+            }
+        )
+    if(error)
+    {
+        console.error(error)
+        redirect('/')
+    }
+
+    redirect('/blogs')
+}
+
+export async function deletePost(id: string) {
+    const supabase = await createClient()
+    supabase.from('test_post_table')
+        .delete()
+        .eq('user_id', id)
 }
 
 //failed sign in

@@ -1,14 +1,16 @@
 import styles from "../app/page.module.css";
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Game } from "../app/page"
+import type { Game } from "@/utils/daily-game"
+import { getUser } from '@/app/auth/actions'
 
 type DailyGameProps = {
     game: Game
 }
 
-export default function DailyGame({ game }: DailyGameProps){
+export default async function DailyGame({ game }: DailyGameProps) {
 
+    const user = await getUser()
     const releaseDate = new Date(game.first_release_date * 1000)
     const cleanDate = releaseDate.toLocaleDateString('en-US', {year: 'numeric', month:'long', day:'numeric'})
     const testGenres = game.genres.join(", ")
@@ -32,7 +34,7 @@ export default function DailyGame({ game }: DailyGameProps){
                     </div>
                 </div>
                 <p className={styles.dailyGameSummary}>{game.summary}</p>
-                <Link href="/new-blog" >Write Post</Link> {/* conditionally render this Link component */}
+                {user && <Link href="/new-blog" >Write Post</Link>}
             </div>
         </section>
     )
