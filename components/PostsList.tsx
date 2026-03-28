@@ -1,9 +1,12 @@
+import styles from '@/app/page.module.css'
 import Post from "./post"
 import { createClient } from '@/utils/supabase/server'
+import { getUser } from '@/app/auth/actions'
 import type { Post as PostType } from '@/app/blogs/page'
 
 export default async function PostsList() {
     const supabase = await createClient()
+    const user = await getUser()
     const { data: test_post_table, error } = await supabase.from('test_post_table').select()
     
     if (error) {
@@ -18,7 +21,7 @@ export default async function PostsList() {
     return (
         <>
             {test_post_table.map(post => (
-                <Post key={post.id} post={post as PostType} />
+                <Post key={post.id} post={post as PostType} user={user} />
             ))}
         </>
     )
@@ -26,6 +29,8 @@ export default async function PostsList() {
 
 export function PostsListFallback() {
     return (
-        <div>Loading posts...</div>
+        <div className={styles.page}>
+            <span>Loading posts...</span>
+        </div>
     )
 }

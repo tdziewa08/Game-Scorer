@@ -17,13 +17,13 @@ export type Post = {
 
 export default function BlogPage() {
     return (
-        <>
+        <div className={styles.page}>
             <h1>This is the Blog page...</h1>
             <section className={styles.postsContainer}>
                 <Suspense fallback={<PostsListFallback />}>
                     <PostsList />
                 </Suspense>
             </section>
-        </>
+        </div>
     )
 }

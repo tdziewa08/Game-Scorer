@@ -2,6 +2,7 @@
 
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 import { Game, getDailyGame } from '@/utils/daily-game'
 
 export async function getUser() {
@@ -89,11 +90,20 @@ export async function writePost(formData: FormData) {
     redirect('/blogs')
 }
 
-export async function deletePost(id: string) {
+export async function deletePost(postId: number) {
     const supabase = await createClient()
-    supabase.from('test_post_table')
+    
+    const { error } = await supabase
+        .from('test_post_table')
         .delete()
-        .eq('user_id', id)
+        .eq('id', postId) // assuming your posts table has an 'id' column
+    
+    if (error) {
+        console.error('Error deleting post:', error)
+        return
+    }
+    
+    revalidatePath('/blogs')
 }
 
 //failed sign in

@@ -3,10 +3,20 @@ import { writePost } from '@/app/auth/actions'
 import Form from 'next/form'
 import Image from 'next/image'
 import { Game, getDailyGame } from '@/utils/daily-game'
+import { Suspense } from 'react'
 
 
-export default async function NewBlogPage() {
+export default function NewBlogPage() {
+    return (
+        <div className={styles.page}>
+            <Suspense fallback={<NewBlogFallback />}>
+                <NewBlogContent />
+            </Suspense>
+        </div>
+    )
+}
 
+async function NewBlogContent() {
     const { image } = await getDailyGame()
 
     return (
@@ -41,6 +51,14 @@ export default async function NewBlogPage() {
                 <input type="hidden" name="post_image" value={image} />
                 <button type="submit">Post</button>
             </Form>
+        </div>
+    )
+}
+
+function NewBlogFallback() {
+    return (
+        <div style={{height: 200, width: 200, backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            Loading game image...
         </div>
     )
 }

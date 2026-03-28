@@ -35,8 +35,8 @@ export default function RootLayout({
   There will be three types of accounts with access to the site, each with their own permissions
 
   Admin - post, post announcements, delete ANY post, view posts
-  User - post, delete OWN post, view posts
-  Visitor - view posts
+  User - post, delete OWN post, view posts****
+  Visitor - view posts****
 
   SUPABASE:
     authenticate users****
@@ -71,26 +71,26 @@ export default function RootLayout({
       links to signout, blogs page ****
     
     Main page(admin):
-      welcomes user by NAME
-      shows game of the day
-      button to post a blog
-      links to signout, blogs page
+      welcomes user by NAME****
+      shows game of the day****
+      button to post a blog****
+      links to signout, blogs page****
 
     Blogs page(visitor):
       shows blogs ****
       blog info ****
-      shows NAME and role of who posted the blog
+      shows NAME and role of who posted the blog****
 
     Blogs page(user):
       shows blogs ****
       blog info ****
-      shows NAME and role of who posted the blog
+      shows NAME and role of who posted the blog ****
       shows delete option for blog matching user ID ****
 
     Blogs page(admin):
       shows blogs ****
       blog info ****
-      shows NAME and role of who posted the blog
+      shows NAME and role of who posted the blog****
       shows delete option for any blog
 
     Create Blog Post page(user and admin):

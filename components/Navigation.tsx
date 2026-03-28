@@ -15,7 +15,7 @@ export default async function Navigation() {
        </>
        :
        <>
-        <span>Welcome {user.user_metadata.display_name}</span>
+        <Link href={`/users/${user.id}`}>Welcome {user.user_metadata.display_name}</Link>
         <form action={handleSignout}>
           <button type="submit">Sign Out</button>
         </form>

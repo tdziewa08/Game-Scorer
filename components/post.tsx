@@ -1,25 +1,23 @@
 import styles from "../app/page.module.css";
 import Image from 'next/image'
 import Form from 'next/form'
-import type { Post } from '@/app/blogs/page'
-import { Game, getDailyGame } from '@/utils/daily-game'
-import { getUser, deletePost } from '@/app/auth/actions'
-
+import type { Post as PostType } from '@/app/blogs/page'
+import type { User } from '@supabase/supabase-js'
+import { deletePost } from '@/app/auth/actions'
 
 type PostProps = {
-    post: Post
+    post: PostType
+    user: User | null
 }
 
-export default async function Post({ post }: PostProps) {
-
-    const user = await getUser()
+export default function Post({ post, user }: PostProps) {
     const postTime = new Date(post.created_at).toLocaleString('en-US', {
-        month: 'long',     // March
-        day: 'numeric',    // 24
-        year: 'numeric',   // 2026
-        hour: 'numeric',   // 2 PM
-        minute: '2-digit', // 30
-        hour12: true       // AM/PM format
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
     })
 
     return (
@@ -35,8 +33,10 @@ export default async function Post({ post }: PostProps) {
             </div>
             <p>Written By: {post.user_display_name} ({post.user_role})</p>
             <p>{postTime}</p>
-            {user?.id === post.user_id && <button>DELETE</button>}
-            {/* THIS LOGIC IS WORKING, JUST NEED TO ADD FUNCTIONALITY TO THE BUTTON */}
+            {user?.id === post.user_id &&
+            <form action={deletePost.bind(null, post.id)}>
+                <button type='submit'>DELETE</button>
+            </form>}
         </div>
     )
 }
