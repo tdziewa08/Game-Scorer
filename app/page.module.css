@@ -1,8 +1,10 @@
 
 .page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: rgb(227, 227, 227);
   border: 1px solid blue;
   width: 80%;
 }
@@ -121,27 +123,46 @@
 }
 
 .post {
-  border: 1px solid red;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-block: 2em;
-}
-
-#postImg {
-  width: 100%;
-  height: auto;
+  padding: 2em;
+  border: 1px solid red;
+  border: 1px solid black;
 }
 
 .postImgContainer {
-  width: 50%;
+  width: 40%;
   position: relative;
 }
 
 .postDetails {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
 }
+
+.userDetails {
+  display: flex;
+  font-size: .8rem;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+  gap: 1em;
+}
+
+#deletePostBtn {
+  margin-top: 1.5em;
+  padding: .25em .5em;
+}
+
+
+
+
+
+
+
 
 .sign-in {
   background-color: red;
@@ -198,7 +219,7 @@
 }
 
 .signupPage > button:hover {
-  opacity: .6;
+  opacity: .8;
   cursor: pointer;
 }
 

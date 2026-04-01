@@ -34,20 +34,36 @@ body {
   margin: 0;
 }
 
-.testy {
+.navBar {
   display: flex;
   align-items: center;
   justify-content: end;
   gap: 2em;
   width: 80%;
   border: 1px solid red;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
+  padding: .75em;
 }
 
-.testy > a {
-  font-size: 1.25rem;
+.navBar > a {
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.signoutBtn {
+  border: 1px solid black;
+  border-radius: .5rem;
+  background-color: whitesmoke;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: .5;
+  padding: .25em .5em;
+}
+
+.signoutBtn:hover {
+  cursor: pointer;
+  opacity: .8;
 }
 
 a {
