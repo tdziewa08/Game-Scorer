@@ -15,7 +15,11 @@
   align-items: center;
   width: 100%;
   background-color: rgb(235, 219, 189);
-  padding: 1.5em 1em 1em 1em;
+  padding: 1.5em 1em 1.5em 1em;
+}
+
+.main > h1 {
+  font-size: 3rem;
 }
 
 .attract {
@@ -39,7 +43,7 @@
   justify-content: flex-start;
   width: 75%;
   margin-top: 2em;
-  border: 1px solid black;
+  border: 1.5px solid black;
   background-color: whitesmoke;
 }
 
@@ -51,7 +55,7 @@
 .gameImgContainer > img {
   display: block;
   width: 100%;
-  border-right: 1px solid black;
+  border-right: 1.5px solid black;
 }
 
 .dailyGameDetails {
@@ -135,10 +139,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-block: 2em;
-  padding: 2em;
-  border: 1px solid red;
-  border: 1px solid black;
+  border: 1.5px solid black;
+  margin-top: 2em;
 }
 
 .postImgContainer {
@@ -146,27 +148,53 @@
 }
 
 .postImgContainer > img {
+  display: block;
   width: 100%;
+  border-right: 1.5px solid black;
 }
 
 .postDetails {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 40%;
+  width: 60%;
+  row-gap: 1em;
+  padding: 0 2em;
 }
 
-.userDetails {
+.userInfo {
   display: flex;
-  font-size: .8rem;
+  font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 1.5em;
-  gap: 1em;
+  column-gap: 1em;
+}
+
+.userInfo > p > a {
+  text-decoration: underline;
+  font-style: italic;
+  color: blue;
+}
+
+.userScores {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-weight: 500;
+  row-gap: .25em
 }
 
 #deletePostBtn {
-  margin-top: 1.5em;
-  padding: .25em .5em;
+  text-align: left;
+  font-size: 1rem;
+  border: 1px solid black;
+  background-color: rgb(245, 209, 209);
+  padding: .25em 1em;
+}
+
+#deletePostBtn:hover {
+  cursor: pointer;
+  background-color: rgb(182, 156, 156);
+  opacity: .8;
 }
 
 

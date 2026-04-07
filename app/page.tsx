@@ -16,7 +16,6 @@ export default function Home() {
         <Suspense fallback={<DailyGameFallback />}>
           <GameOfDayWrapper />
         </Suspense>
-        <Link href="/blogs">View Blogs</Link>
       </main>
     </div>
   );

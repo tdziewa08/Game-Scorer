@@ -31,17 +31,19 @@ export default function Post({ post, user, currentUserProfile }: PostProps) {
                 <img src={post.post_image} alt="placeholder-img" />
             </div>
             <div className={styles.postDetails}>
-                <div className={styles.userDetails}>
+                <div className={styles.userInfo}>
                     <p>
                         Written By: <Link href={`/users/${post.user_id}`}>{post.profiles?.display_name}</Link>
-                        ({post.profiles?.app_role})
+                        {` (${post.profiles?.app_role})`}
                     </p>
                     <p>{postTime}</p>
                 </div>
-                <p>Gameplay: {post.gameplay_rating}/10</p>
-                <p>Story: {post.story_rating}/10</p>
-                <p>Music: {post.music_rating}/10</p>
-                <p>Replayability: {post.replay_rating}/10</p>
+                <div className={styles.userScores}>
+                    <p>Gameplay: {post.gameplay_rating}/10</p>
+                    <p>Story: {post.story_rating}/10</p>
+                    <p>Music: {post.music_rating}/10</p>
+                    <p>Replayability: {post.replay_rating}/10</p>
+                </div>
                 {(user?.id === post.user_id || currentUserProfile?.app_role === 'Admin') &&
                 <form action={deletePost.bind(null, post.id)}>
                     <button id={styles.deletePostBtn} type='submit'>DELETE</button>

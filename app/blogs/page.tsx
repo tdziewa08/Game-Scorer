@@ -9,12 +9,14 @@ export type Post = Database['public']['Tables']['test_post_table']['Row']
 export default function BlogPage() {
     return (
         <div className={styles.page}>
-            <h1>User Posts</h1>
-            <section className={styles.postsContainer}>
-                <Suspense fallback={<PostsListFallback />}>
-                    <PostsList />
-                </Suspense>
-            </section>
+            <main className={styles.main}>
+                <h1>User Posts</h1>
+                <section className={styles.postsContainer}>
+                    <Suspense fallback={<PostsListFallback />}>
+                        <PostsList />
+                    </Suspense>
+                </section>
+            </main>
         </div>
     )
 }

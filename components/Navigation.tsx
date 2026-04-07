@@ -7,6 +7,7 @@ export default async function Navigation() {
   return (
     <nav className="navBar">
       <Link href="/">Home</Link>
+      <Link href="/blogs">Posts</Link>
       {user === null
        ? 
        <>
@@ -29,6 +30,7 @@ export function NavigationFallback() {
   return (
     <nav className="navBar">
       <Link href="/">Home</Link>
+      <Link href="/blogs">Posts</Link>
       <Link href="/sign-in">Sign In</Link>
       <Link href="/sign-up">Sign Up</Link>
     </nav>
