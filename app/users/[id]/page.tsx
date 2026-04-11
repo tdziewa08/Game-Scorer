@@ -19,20 +19,29 @@ type UserDetailProps = {
 
 // Separate async component for user posts
 async function UserPostsList({ userId }: { userId: string }) {
-    const user = await getUser()
     const supabase = await createClient()
     
-    const { data: postsWithProfiles, error } = await supabase
-        .from('posts_table')
-        .select(`*, profiles(id, display_name, app_role)`)
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false })
+    // Parallelize data fetching with Promise.all
+    const [user, postsResult] = await Promise.all([
+        getUser(),
+        supabase
+            .from('posts_table')
+            .select(`*, profiles(id, display_name, app_role)`)
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+    ])
     
-    const { data: currentUserProfile } = user ? await supabase
-        .from('profiles')
-        .select('app_role')
-        .eq('id', user.id)
-        .single() : { data: null }
+    const { data: postsWithProfiles, error } = postsResult
+    
+    // Get current user profile only if user exists
+    const currentUserProfile = user ? 
+        await supabase
+            .from('profiles')
+            .select('app_role')
+            .eq('id', user.id)
+            .single()
+            .then(result => result.data)
+        : null
     
     if (error) {
         console.error('Error fetching posts:', error)
@@ -114,22 +123,35 @@ function UserPostsFallback() {
     )
 }
 
-export default async function UserDetail({ params }: UserDetailProps) {
-    const { id } = await params
-
+// Combined async component for the entire page content
+async function UserPageContent({ userId }: { userId: string }) {
     return (
         <div className={styles.page}>
             <main className={styles.main}>
                 <Suspense fallback={<UserInfoFallback />}>
-                    <UserInfo userId={id} />
+                    <UserInfo userId={userId} />
                 </Suspense>
                 
                 <Suspense fallback={<UserPostsFallback />}>
                     <section className={styles.userPostsContainer}>
-                        <UserPostsList userId={id} />
+                        <UserPostsList userId={userId} />
                     </section>
                 </Suspense>
             </main>
         </div>
     )
+}
+
+export default function UserDetail({ params }: UserDetailProps) {
+    return (
+        <Suspense fallback={<div className={styles.page}><main className={styles.main}><UserInfoFallback /><UserPostsFallback /></main></div>}>
+            <UserPageWrapper params={params} />
+        </Suspense>
+    )
+}
+
+// Wrapper to handle the async params
+async function UserPageWrapper({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params
+    return <UserPageContent userId={id} />
 }

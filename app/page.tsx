@@ -9,7 +9,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
             <h1>
-              Gamer Ranker Shitter
+              Game Scorer
               <span>Please Sign-Up to rank our game of the day!</span>
             </h1>
         <Suspense fallback={<DailyGameFallback />}>

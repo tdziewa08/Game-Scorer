@@ -40,14 +40,12 @@ export async function handleSignin(formData: FormData) {
                 password: password
             }
         )
-        console.log(result)
         if(result.error)
         {
             console.error(result.error)
         }
         else if(result.data.user)
         {
-            console.log(`Welcome ${result.data.user.email}`)
             redirect('/')
         }
 }
@@ -93,7 +91,8 @@ export async function deletePost(postId: number) {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
     
-    if (!user) {
+    if(!user)
+    {
         console.error('Unauthorized: No user')
         return
     }
@@ -115,7 +114,8 @@ export async function deletePost(postId: number) {
     const isOwner = post?.user_id === user.id
     const isAdmin = profile?.app_role === 'Admin'
     
-    if (!isOwner && !isAdmin) {
+    if(!isOwner && !isAdmin)
+    {
         console.error('Unauthorized: Not owner or admin')
         return
     }
@@ -125,11 +125,10 @@ export async function deletePost(postId: number) {
         .delete()
         .eq('id', postId)
     
-    if (error) {
+    if(error)
+    {
         console.error('Error deleting post:', error)
         return
     }
-    
-    console.log('Post deleted successfully by:', isAdmin ? 'Admin' : 'Owner')
     revalidatePath('/posts')
 }
