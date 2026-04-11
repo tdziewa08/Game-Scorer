@@ -1,6 +1,6 @@
 import styles from "../app/page.module.css";
 import Link from 'next/link'
-import type { Post as PostType } from '@/app/blogs/page'
+import type { Post as PostType } from '@/app/posts/page'
 import type { User } from '@supabase/supabase-js'
 import { deletePost } from '@/app/auth/actions'
 

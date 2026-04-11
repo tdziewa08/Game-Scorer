@@ -81,7 +81,7 @@
 
 .dailyGameSummary {
   font-size: 1.125rem;
-  line-height: 1.25em;
+  line-height: 1.375em;
 }
 
 .dailyGameDetails > a {
@@ -179,6 +179,7 @@
 
 #deletePostBtn {
   text-align: left;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   border: 1px solid black;
   background-color: rgba(255, 0, 0, 0.233);
@@ -258,6 +259,7 @@
 
 .signupPage > button {
   width: 100%;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   background-color: rgba(83, 255, 83, 0.573);
@@ -312,7 +314,7 @@
 }
 
 .newPostForm > h1 {
-  font-size: 3rem;
+  font-size: 2.75rem;
   margin-bottom: .5em;
 }
 
@@ -347,6 +349,7 @@
 
 .newPostForm > button {
   width: 100%;
+  font-family: "Roboto", sans-serif;
   font-size: 1.75rem;
   font-weight: bold;
   background-color: rgba(83, 255, 83, 0.573);
@@ -361,64 +364,7 @@
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Media Queries */
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
@@ -449,6 +395,431 @@
   }
 }
 
+/* Mobile Phone Styles */
+@media screen and (max-width: 768px) {
+  .page {
+    width: 95%;
+  }
+
+  .main {
+    padding: 1em 0.5em;
+  }
+
+  .main > h1 {
+    font-size: 2rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5em;
+  }
+
+  .main > h1 > span {
+    font-size: 1.2rem;
+  }
+
+  .main > a {
+    font-size: 1.2rem;
+    padding: 0.5em 1.5em;
+  }
+
+  .dailyGameCard {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .gameImgContainer {
+    width: 100%;
+  }
+
+  .gameImgContainer > img {
+    border-right: none;
+    border-bottom: 1.5px solid black;
+  }
+
+  .dailyGameDetails {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .dailyGameDetails > h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .dailyGameDetails > div {
+    font-size: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .dailyGameSummary {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .dailyGameDetails > a {
+    width: 50%;
+    font-size: 1rem;
+    align-self: center;
+  }
+
+  .postsContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0.5em;
+  }
+
+  .post {
+    flex-direction: column;
+    margin-top: 1em;
+  }
+
+  .postImgContainer {
+    width: 100%;
+  }
+
+  .postImgContainer > img {
+    border-right: none;
+    border-bottom: 1.5px solid black;
+  }
+
+  .postDetails {
+    width: 100%;
+    padding: 1em;
+    text-align: center;
+  }
+
+  .postGameName {
+    font-size: 1.1rem;
+  }
+
+  .userInfo {
+    font-size: 0.9rem;
+    justify-content: center;
+  }
+
+  .userScores {
+    font-size: 1rem;
+  }
+
+  .userPostsContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .userDetails {
+    flex-direction: column;
+    gap: 1em;
+    column-gap: 0;
+  }
+
+  .userDetails > h1 {
+    font-size: 2rem;
+  }
+
+  .userDetails > h2 {
+    font-size: 1.5rem;
+  }
+
+  .signupPage {
+    height: auto;
+    padding: 1.5em;
+  }
+
+  .signupPage > h1 {
+    font-size: 1.5rem;
+  }
+
+  .signupPage > label {
+    font-size: 1.2rem;
+  }
+
+  .signupPage > label > div > input {
+    font-size: 1.2rem;
+  }
+
+  .signupPage > button {
+    font-size: 1.2rem;
+  }
+
+  .newPostContainer {
+    width: 95%;
+    flex-direction: column;
+  }
+
+  .newPostImgContainer {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1.5px solid black;
+  }
+
+  .newPostImgContainer > img {
+    border-right: none;
+  }
+
+  .newPostForm {
+    width: 100%;
+    padding: 1em;
+  }
+
+  .newPostForm > h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .newPostFormInputs {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .newPostFormInputs > label {
+    font-size: 1.3rem;
+  }
+
+  .newPostFormInputs > label > div {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .newPostFormInputs > label > div > p {
+    width: 100%;
+  }
+
+  .newPostFormInputs > label > div > input {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+
+  .newPostForm > button {
+    font-size: 1.3rem;
+  }
+
+  /* Enhanced Mobile Styles for Blogs & Users Pages */
+  .main > h1 {
+    margin-bottom: 1em;
+  }
+  
+  .postsContainer {
+    padding: 0 0.5em;
+    margin-top: 1em;
+  }
+
+  .userPostsContainer {
+    padding: 0 0.5em;
+    margin-top: 1em;
+  }
+
+  .post {
+    margin-top: 1em;
+    border-radius: 0.5em;
+    overflow: hidden;
+  }
+
+  .postDetails {
+    row-gap: 0.75em;
+  }
+
+  .userInfo {
+    flex-direction: column;
+    gap: 0.25em;
+    align-items: center;
+  }
+
+  .userInfo > p {
+    text-align: center;
+  }
+
+  .userScores {
+    align-items: center;
+    text-align: center;
+  }
+
+  #deletePostBtn {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    align-self: center;
+    margin-top: 0.5em;
+  }
+
+  /* Better spacing for user details page */
+  .userDetails {
+    padding: 1.5em 0;
+  }
+}
+
+/* Target smaller laptop viewports - 150% scaled laptop */
+@media screen and (min-width: 1200px) and (max-width: 1366px) {
+  .main > h1 {
+    font-size: 2.25rem;
+  }
+
+  .main > h1 > span {
+    font-size: 1rem;
+  }
+
+  .dailyGameDetails > h2 {
+    font-size: 1.5rem;
+  }
+
+  .dailyGameDetails > div {
+    font-size: .875rem;
+  }
+
+  .dailyGameSummary {
+    font-size: .75rem;
+  }
+
+  .dailyGameDetails > a {
+    font-size: .75rem;
+  }
+
+  .postGameName {
+    font-size: 1rem;
+  }
+
+  .userInfo {
+    font-size: .75rem;
+  }
+
+  .userScores {
+    font-size: 1rem;
+  }
+
+  #deletePostBtn {
+    font-size: .75rem;
+  }
+
+  .signupPage {
+    height: 475px;
+  }
+
+  .signupPage > h1 {
+    font-size: 1.5rem;
+  }
+
+  .signupPage > label {
+    font-size: 1.25rem;
+  }
+
+  .signupPage > label > div > p {
+    width: 175px;
+  }
+
+  .signupPage > label > div > input {
+    font-size: 1.25rem;
+  }
+
+  .signupPage > button {
+    font-size: 1.25rem;
+  }
+
+  .newPostForm > h1 {
+    font-size: 2rem;
+  }
+
+  .newPostFormInputs > label {
+    font-size: 1rem;
+  }
+
+  .newPostFormInputs > label > div > input {
+    font-size: 1rem;
+  }
+
+  .newPostForm > button {
+    font-size: 1rem;
+  }
+}
+
+/* Target actual screen resolution, not viewport */
+@media screen and (min-device-width: 2560px) {
+  .main > h1 {
+    font-size: 3.5rem;
+  }
+
+  .main > h1 > span {
+    font-size: 1.75rem;
+  }
+
+  .dailyGameDetails > h2 {
+    font-size: 2.25rem;
+  }
+
+  .dailyGameDetails > div {
+    font-size: 1.375rem;
+  }
+
+  .dailyGameSummary {
+    font-size: 1.25rem;
+  }
+
+  .dailyGameDetails > a {
+    font-size: 1.25rem;
+  }
+
+  .postGameName {
+    font-size: 1.75rem;
+  }
+
+  .userInfo {
+    font-size: 1.25rem;
+  }
+
+  .userScores {
+    font-size: 1.5rem;
+  }
+
+  #deletePostBtn {
+    font-size: 1.25rem;
+    padding: .25em 1em;
+  }
+
+}
+
+/* Target 4K displays - 3840px device width and above */
+@media screen and (min-device-width: 3840px) {
+  .main > h1 {
+    font-size: 4.5rem;
+  }
+
+  .main > h1 > span {
+    font-size: 2.25rem;
+  }
+
+  .dailyGameDetails > h2 {
+    font-size: 3rem;
+  }
+
+  .dailyGameDetails > div {
+    font-size: 1.625rem;
+  }
+
+  .dailyGameSummary {
+    font-size: 1.5rem;
+  }
+
+  .dailyGameDetails > a {
+    font-size: 1.375rem;
+  }
+
+  .postGameName {
+    font-size: 2.25rem;
+  }
+
+  .userInfo {
+    font-size: 1.5rem;
+  }
+
+  .userScores {
+    font-size: 1.75rem;
+  }
+
+  #deletePostBtn {
+    font-size: 1.5rem;
+    padding: .375em 1.25em;
+  }
+}
+
+
+
 /* ===== SKELETON LOADING ANIMATIONS ===== */
 
 @keyframes skeleton-loading {
@@ -468,6 +839,7 @@
 }
 
 /* Post Skeleton */
+
 .postSkeleton {
   display: flex;
   align-items: center;
@@ -513,6 +885,7 @@
 }
 
 /* Daily Game Skeleton */
+
 .dailyGameSkeleton {
   display: flex;
   align-items: center;
@@ -577,6 +950,7 @@
 }
 
 /* New Blog Form Skeleton */
+
 .newBlogSkeleton {
   display: flex;
   align-items: stretch;
@@ -626,6 +1000,7 @@
 }
 
 /* User Details Skeleton */
+
 .userDetailsSkeleton {
   display: flex;
   align-items: center;
@@ -647,6 +1022,7 @@
 }
 
 /* Posts Container Skeleton */
+
 .postsContainerSkeleton {
   width: 100%;
   display: grid;

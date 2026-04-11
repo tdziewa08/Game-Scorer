@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import { createClient } from '@/utils/supabase/server'
 import { getUser } from '@/app/auth/actions'
 import Post from "@/components/Post"
-import type { Post as PostType, Profile} from '@/app/blogs/page'
+import type { Post as PostType, Profile} from '@/app/posts/page'
 
 type PostWithProfile = PostType & {
     profiles: {

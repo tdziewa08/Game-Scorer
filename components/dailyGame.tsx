@@ -29,7 +29,7 @@ export default function DailyGame({ game, user }: DailyGameProps) {
                     </div>
                 </div>
                 <p className={styles.dailyGameSummary}>{game.summary}</p>
-                {user && <Link href="/new-blog">Write Post</Link>}
+                {user && <Link href="/new-post">Write Post</Link>}
             </div>
         </section>
     )

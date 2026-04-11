@@ -87,7 +87,7 @@ export async function writePost(formData: FormData) {
         redirect('/')
     }
 
-    redirect('/blogs')
+    redirect('/posts')
 }
 
 export async function deletePost(postId: number) {
@@ -132,7 +132,7 @@ export async function deletePost(postId: number) {
     }
     
     console.log('Post deleted successfully by:', isAdmin ? 'Admin' : 'Owner')
-    revalidatePath('/blogs')
+    revalidatePath('/posts')
 }
 
 //failed sign in
