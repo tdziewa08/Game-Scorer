@@ -14,12 +14,12 @@ export type Game = {
 export async function getDailyGame(): Promise<Game> {
     'use cache'    
     const token = await getToken()
-    return await getGamesTest(token)
+    return await getGames(token)
 }
 
 export async function getToken() {
   const response = await fetch(
-    'https://id.twitch.tv/oauth2/token?client_id=tw9b38rfdf3f49bwth8vajvp7ugzta&client_secret=4ilxc13p52i3mmhgcfcf2d1o4v98w0&grant_type=client_credentials', 
+    `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`, 
     { 
       method: 'POST',
       next: { revalidate: 86400 } // Cache the token for 24 hours
@@ -29,14 +29,14 @@ export async function getToken() {
   return data.access_token
 }
 
-export async function getGamesTest(token: string) {
+export async function getGames(token: string) {
   const response = await fetch(
     "https://api.igdb.com/v4/games",
     { 
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Client-ID': 'tw9b38rfdf3f49bwth8vajvp7ugzta',
+        'Client-ID': process.env.TWITCH_CLIENT_ID!,
         'Authorization': `Bearer ${token}`,
       },
       body: `
@@ -92,7 +92,7 @@ export async function getGameCompany(token: string, ids: {id: number, company: n
     { method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Client-ID': 'tw9b38rfdf3f49bwth8vajvp7ugzta',
+        'Client-ID': process.env.TWITCH_CLIENT_ID!,
         'Authorization': `Bearer ${token}`,
       },
       body: `fields name; where id = ${ids.company}; limit 1;`,
