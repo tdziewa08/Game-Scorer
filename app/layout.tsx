@@ -5,8 +5,8 @@ import Navigation, { NavigationFallback } from '@/components/Navigation'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
-  title: "My App",
-  description: "My custom application",
+  title: "Game Scorer",
+  description: "Daily video game blog",
 };
 
 export default function RootLayout({
